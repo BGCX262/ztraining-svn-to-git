@@ -1,0 +1,28 @@
+<h2><?php echo $this->module; ?></h2>
+<p><a onclick='postToFeed(); return false;'>Post to Feed</a></p>
+    <p id='msg'></p>
+<script> 
+      FB.init({
+          appId: "502616893098806", 
+          status: true, 
+          cookie: true
+      });   
+      function postToFeed() {
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          link: 'http://ptnhuan.blogspot.com',
+          picture: 'http://fbrell.com/f8.jpg',
+          name: 'Facebook Dialogs',
+          caption: 'Reference Documentation',
+          description: 'Using Dialogs to interact with users.'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+    
+</script>
